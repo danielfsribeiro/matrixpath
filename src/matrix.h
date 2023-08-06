@@ -18,6 +18,7 @@ public:
     int get(unsigned r, unsigned c);
     std::vector<int> get_row(unsigned r);
     std::vector<int> get_col(unsigned c);
+    std::vector<int> get_diagonal();
 
     Matrix(unsigned row, unsigned col);
     ~Matrix();   
@@ -32,5 +33,7 @@ public:
 Matrix matrix_from_nodes(std::vector<Node>& nodes);
 
 void write_matrix(Matrix& matrix, const char* path);
+
+void write_scores(Matrix& matrix, const char* path);
 
 #endif //MATRIX_H

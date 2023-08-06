@@ -71,6 +71,18 @@ std::vector<int> Matrix::get_col(unsigned c)
     return col;
 }
 
+std::vector<int> Matrix::get_diagonal()
+{
+    std::vector<int> diagonal{};
+    diagonal.reserve(_ncol);
+    for(std::size_t i =0; i < _ncol; i++)
+    {
+        diagonal.push_back(get(i, i));
+    }
+    
+    return diagonal;
+}
+
 Matrix::Matrix(unsigned row, unsigned col)
 : _array(nullptr), _nrow(row), _ncol(col)
 {
@@ -189,7 +201,27 @@ void write_matrix(Matrix& matrix, const char* path)
             // Write newline char
             ofile << '\n';
             
-            //delete pp;
+            line++;
+        }
+    }
+    ofile.close();
+}
+
+void write_scores(Matrix& matrix, const char* path)
+{
+    // Open file
+    std::filesystem::path out_path(path);
+    std::ofstream ofile;
+    ofile.open(out_path);
+    if(ofile.is_open())
+    {
+        std::vector<int> scores = matrix.get_diagonal();
+        unsigned line = 0;
+        // Write lines
+        while(line < matrix.ncol())
+        {
+            ofile << line << '\t' << scores[line] << '\n';   
+            
             line++;
         }
     }

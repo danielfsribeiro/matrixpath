@@ -3,8 +3,9 @@
 #include <string>
 #include <vector>
 
-#include "node.h"
 #include "matrix.h"
+#include "node.h"
+#include "path.h"
 
 int main(int argc, char* argv[])
 {
@@ -55,17 +56,42 @@ int main(int argc, char* argv[])
     
     // Create Matrix from nodes
     Matrix matrix(matrix_from_nodes(nodes));
+    // Calculate score matrix
+    Matrix score_matrix(build_score_matrix(matrix));
     
-    // Write test matrix
+    // Write test matrices
+    // Tree matrix
     std::filesystem::path out_path = "./";     // Default out folder to WD
-    std::string out_file_name = in_path.stem() + "_matrix.csv";
+    std::string out_file_name = std::string(in_path.stem().c_str()) + "_matrix.csv";
     if(argc >= 3)
     {
         //Write to given output directory
         out_path = argv[2];
     }
-    std::filesystem::path out_path = out_path / out_file_name;
+    out_path = out_path / out_file_name;
     write_matrix(matrix, out_path.c_str());
+    
+    // Score matrix
+    out_path = "./";     // Default out folder to WD
+    out_file_name = std::string(in_path.stem().c_str()) + "_score_matrix.csv";
+    if(argc >= 3)
+    {
+        //Write to given output directory
+        out_path = argv[2];
+    }
+    out_path = out_path / out_file_name;
+    write_matrix(score_matrix, out_path.c_str());
+    
+    // Scores table
+    out_path = "./";     // Default out folder to WD
+    out_file_name = std::string(in_path.stem().c_str()) + "_scores.csv";
+    if(argc >= 3)
+    {
+        //Write to given output directory
+        out_path = argv[2];
+    }
+    out_path = out_path / out_file_name;
+    write_scores(score_matrix, out_path.c_str());
     
     return 0;
 }
