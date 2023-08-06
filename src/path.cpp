@@ -39,12 +39,14 @@ int find_parent(Matrix& matrix, int child)
         }
         i++;
     }
+#ifdef DEBUG
     if (i >= parents.size())
     {
         parent_id = child;
         std::cout << "Root node for child " << child \
             << ". (No parent found) " << std::endl;
     }
+#endif //DEBUG
 
     return parent_id;
 }
