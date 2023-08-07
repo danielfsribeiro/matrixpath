@@ -8,12 +8,12 @@
 #include <utility>
 
 
-int* Matrix::_get_pos(unsigned r, unsigned c)
+int* Matrix::_get_pos(int r, int c)
 {
     return _array + (_nrow * r + c % _ncol);
 }
 
-void Matrix::set(int value, unsigned r, unsigned c)
+void Matrix::set(int value, int r, int c)
 {
     if(r < _nrow && c < _ncol)
     {
@@ -21,7 +21,7 @@ void Matrix::set(int value, unsigned r, unsigned c)
     }
 }
 
-int Matrix::get(unsigned r, unsigned c)
+int Matrix::get(int r, int c)
 {
     if(r < _nrow && c < _ncol)
     {
@@ -33,7 +33,7 @@ int Matrix::get(unsigned r, unsigned c)
     return 0;
 }
 
-std::vector<int> Matrix::get_row(unsigned r)
+std::vector<int> Matrix::get_row(int r)
 {
     std::vector<int> row;
     if(r < _nrow)
@@ -51,13 +51,13 @@ std::vector<int> Matrix::get_row(unsigned r)
     return row;
 }
 
-std::vector<int> Matrix::get_col(unsigned c)
+std::vector<int> Matrix::get_col(int c)
 {
     std::vector<int> col{};
     if(c < _ncol)
     {
         col.reserve(_ncol);
-        for(unsigned i = 0; i < _nrow; i++)
+        for(int i = 0; i < _nrow; i++)
         {
             col.push_back(*(_get_pos(i, c)));
         }
@@ -75,7 +75,7 @@ std::vector<int> Matrix::get_diagonal()
 {
     std::vector<int> diagonal{};
     diagonal.reserve(_ncol);
-    for(std::size_t i =0; i < _ncol; i++)
+    for(int i =0; i < _ncol; i++)
     {
         diagonal.push_back(get(i, i));
     }
@@ -83,7 +83,7 @@ std::vector<int> Matrix::get_diagonal()
     return diagonal;
 }
 
-Matrix::Matrix(unsigned row, unsigned col)
+Matrix::Matrix(int row, int col)
 : _array(nullptr), _nrow(row), _ncol(col)
 {
     _array = new int[_nrow * _ncol]{};  // zero-ed array
@@ -187,7 +187,7 @@ void write_matrix(Matrix& matrix, const char* path)
     ofile.open(out_path);
     if(ofile.is_open())
     {
-        unsigned line = 0;
+        int line = 0;
         // Write lines
         while(line < matrix.nrow())
         {
@@ -216,7 +216,7 @@ void write_scores(Matrix& matrix, const char* path)
     if(ofile.is_open())
     {
         std::vector<int> scores = matrix.get_diagonal();
-        unsigned line = 0;
+        int line = 0;
         // Write lines
         while(line < matrix.ncol())
         {

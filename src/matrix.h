@@ -7,20 +7,20 @@
 class Matrix
 {
     int* _array;
-    unsigned _nrow;
-    unsigned _ncol;
+    int _nrow;
+    int _ncol;
     
-    int* _get_pos(unsigned r, unsigned c);
+    int* _get_pos(int r, int c);
 public:
-    inline unsigned nrow(){ return _nrow; };
-    inline unsigned ncol(){ return _ncol; };
-    void set(int value, unsigned r, unsigned c);
-    int get(unsigned r, unsigned c);
-    std::vector<int> get_row(unsigned r);
-    std::vector<int> get_col(unsigned c);
+    inline int nrow(){ return _nrow; };
+    inline int ncol(){ return _ncol; };
+    void set(int value, int r, int c);
+    int get(int r, int c);
+    std::vector<int> get_row(int r);
+    std::vector<int> get_col(int c);
     std::vector<int> get_diagonal();
 
-    Matrix(unsigned row, unsigned col);
+    Matrix(int row, int col);
     ~Matrix();   
     //Copy
     Matrix(const Matrix& src);

@@ -10,6 +10,8 @@ int find_parent(Matrix& matrix, int child)
     std::vector<int> row = matrix.get_row(child);
     // Set vector for XOR
     std::vector<int> parents(row.size(), 0);
+    // Get the value of the child
+    // If the get() value is 0 , id is not being used 
     parents[child] = matrix.get(child, child);
     for (std::size_t i = 0; i < row.size(); i++)
     {
@@ -39,14 +41,14 @@ int find_parent(Matrix& matrix, int child)
         }
         i++;
     }
-#ifdef DEBUG
     if (i >= parents.size())
     {
-        parent_id = child;
+        parent_id = -1;     // -1 id to say it was not found
+#ifdef DEBUG
         std::cout << "Root node for child " << child \
             << ". (No parent found) " << std::endl;
-    }
 #endif //DEBUG
+    }
 
     return parent_id;
 }
@@ -55,11 +57,15 @@ Matrix build_score_matrix(Matrix& matrix)
 {
     Matrix score_matrix(matrix);
     // Walk from every Node until root node
-    for (std::size_t i = 0; i < score_matrix.nrow(); i++)
+    for (int i = 0; i < score_matrix.nrow(); i++)
     {
         int child = i;
         int parent = find_parent(score_matrix, i);
-        while (child != parent)  // Not a root node
+        //if(parent == -1)   // Not a root (to account for unenxixting id on the tree)
+        //{
+        //    continue;
+        //}
+        while (child != parent && parent != -1)  // Not a root node
         {
             // Set score +1
             int score = score_matrix.get(parent, parent) + 1;
