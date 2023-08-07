@@ -7,7 +7,7 @@
 If an *out folder* is not provided it defaults to the *input folder* of the *tab-delimited file*.  
 
 #### Tab delimited file
-CSV file (tab separated) containing 2 columns, describing *child node/parent node* relationships:  
+TSV file (tab separated) containing 2 columns, describing *child node/parent node* relationships:  
 Node id in column 1 and its respective Parent id in column 2.  
 column 1: Node id (int)  
 column 2: Parent id (int). If root, Parent id == Node id  
@@ -31,16 +31,16 @@ Example:
 ### How to use the test
 
 ```
-<path/to>/matrixpath test/test_tree.csv
+<path/to>/matrixpath test/test_tree.tsv
 ```
 Outputs:  
-test_tree_matrix.csv  
-test_tree_score_matrix.csv  
-test_tree_scores.csv  
+test_tree_matrix.tsv  
+test_tree_score_matrix.tsv  
+test_tree_scores.tsv  
 
 ### Output formats
 
 The matrices are organized *row x col* as *child x parent* ids.  Any value outside the diagonal represents a connection between parent-child.  
-On the *tree_matrix.csv* the diagonal merely represents that the child/parent is connected to itself.  
-On the *tree_score_matrix.csv* the diagonal is the score, aka, the amount of children connected to each parent node plut itself (+1).  
-The *tree_scores.csv* is table similar to the input tree in format, but column 1 contains Node id and column 2 its respective score (connections + 1).  
+On the *tree_matrix.tsv* the diagonal merely represents that the child/parent is connected to itself.  
+On the *tree_score_matrix.tsv* the diagonal is the score, aka, the amount of children connected to each parent node plut itself (+1).  
+The *tree_scores.tsv* is table similar to the input tree in format, but column 1 contains Node id and column 2 its respective score (connections + 1).  

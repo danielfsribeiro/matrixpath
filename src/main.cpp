@@ -14,8 +14,8 @@ int main(int argc, char* argv[])
     {
         std::cout << "No arguments provided!\n";
         std::cout << "Usage:\n";
-        std::cout << "matrixpath 'path/to/tree/file.csv' ['path/to/output_folder']\n";
-        std::cout << "\nfile.csv must be TAB delimited\n";
+        std::cout << "matrixpath 'path/to/tree/file.tsv' ['path/to/output_folder']\n";
+        std::cout << "\nfile.tsv must be TAB delimited\n";
         
         std::cout << "\nCurrent program args:\n";
         for(int i = 0; i < argc; i++)
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
     // Write test matrices
     // Tree matrix
     std::filesystem::path out_path = "./";     // Default out folder to WD
-    std::string out_file_name = std::string(in_path.stem().c_str()) + "_matrix.csv";
+    std::string out_file_name = std::string(in_path.stem().c_str()) + "_matrix.tsv";
     if(argc >= 3)
     {
         //Write to given output directory
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
     
     // Score matrix
     out_path = "./";     // Default out folder to WD
-    out_file_name = std::string(in_path.stem().c_str()) + "_score_matrix.csv";
+    out_file_name = std::string(in_path.stem().c_str()) + "_score_matrix.tsv";
     if(argc >= 3)
     {
         //Write to given output directory
@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
     
     // Scores table
     out_path = "./";     // Default out folder to WD
-    out_file_name = std::string(in_path.stem().c_str()) + "_scores.csv";
+    out_file_name = std::string(in_path.stem().c_str()) + "_scores.tsv";
     if(argc >= 3)
     {
         //Write to given output directory
