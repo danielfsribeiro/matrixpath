@@ -1,3 +1,5 @@
+#include "config.h"
+
 #include <filesystem>
 #include <iostream>
 #include <string>
@@ -12,6 +14,13 @@ int main(int argc, char* argv[])
     // If no args provided
     if(argc <= 1)
     {
+        // Report version
+        std::cout << matrixpath_PROJECT_NAME 
+                  << " Version " << matrixpath_VERSION_MAJOR << "."
+                  << matrixpath_VERSION_MINOR << "."
+                  << matrixpath_VERSION_VERSION_PATCH << "." 
+                  << matrixpath_VERSION_TWEAK << "\n" << std::endl;
+        // Report usage
         std::cout << "No arguments provided!\n";
         std::cout << "Usage:\n";
         std::cout << "matrixpath 'path/to/tree/file.tsv' ['path/to/output_folder']\n";

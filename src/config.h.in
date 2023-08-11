@@ -1,0 +1,6 @@
+// the configured options and settings for matrixpath
+#define matrixpath_PROJECT_NAME "@CMAKE_PROJECT_NAME@"
+#define matrixpath_VERSION_MAJOR @matrixpath_VERSION_MAJOR@
+#define matrixpath_VERSION_MINOR @matrixpath_VERSION_MINOR@
+#define matrixpath_VERSION_VERSION_PATCH @matrixpath_VERSION_PATCH@
+#define matrixpath_VERSION_TWEAK @matrixpath_VERSION_TWEAK@
