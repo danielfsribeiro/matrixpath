@@ -1,5 +1,6 @@
 #ifndef NODE_H
 #define NODE_H
+#include <string>
 #include <vector>
 
 struct Node
@@ -11,5 +12,7 @@ struct Node
 };
 
 std::vector<Node> get_nodes(const char* path);
+
+std::vector<Node> get_nodes(const std::vector<int>& node_info);
 
 #endif //NODE_H

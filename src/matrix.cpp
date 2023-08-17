@@ -13,6 +13,11 @@ int* Matrix::_get_pos(int r, int c)
     return _array + (_nrow * r + c % _ncol);
 }
 
+int* Matrix::_get_pos(int r, int c) const
+{
+    return _array + (_nrow * r + c % _ncol);
+}
+
 void Matrix::set(int value, int r, int c)
 {
     if(r < _nrow && c < _ncol)
@@ -21,7 +26,7 @@ void Matrix::set(int value, int r, int c)
     }
 }
 
-int Matrix::get(int r, int c)
+int Matrix::get(int r, int c) const
 {
     if(r < _nrow && c < _ncol)
     {
@@ -33,7 +38,7 @@ int Matrix::get(int r, int c)
     return 0;
 }
 
-std::vector<int> Matrix::get_row(int r)
+std::vector<int> Matrix::get_row(int r) const
 {
     std::vector<int> row;
     if(r < _nrow)
@@ -51,7 +56,7 @@ std::vector<int> Matrix::get_row(int r)
     return row;
 }
 
-std::vector<int> Matrix::get_col(int c)
+std::vector<int> Matrix::get_col(int c) const
 {
     std::vector<int> col{};
     if(c < _ncol)
@@ -71,7 +76,7 @@ std::vector<int> Matrix::get_col(int c)
     return col;
 }
 
-std::vector<int> Matrix::get_diagonal()
+std::vector<int> Matrix::get_diagonal() const
 {
     std::vector<int> diagonal{};
     diagonal.reserve(_ncol);
@@ -150,7 +155,7 @@ Matrix& Matrix::operator=(Matrix&& src) noexcept
 
 // Free functions
 // Write TAB delimited matrix file
-Matrix matrix_from_nodes(std::vector<Node>& nodes)
+Matrix matrix_from_nodes(const std::vector<Node>& nodes)
 {
     // Find biggest id in Nodes vector
     int max = 0;
@@ -179,7 +184,7 @@ Matrix matrix_from_nodes(std::vector<Node>& nodes)
     return matrix;
 }
 
-void write_matrix(Matrix& matrix, const char* path)
+void write_matrix(const Matrix& matrix, const char* path)
 {
     // Open file
     std::filesystem::path out_path(path);
@@ -207,7 +212,7 @@ void write_matrix(Matrix& matrix, const char* path)
     ofile.close();
 }
 
-void write_scores(Matrix& matrix, const char* path)
+void write_scores(const Matrix& matrix, const char* path)
 {
     // Open file
     std::filesystem::path out_path(path);

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.13)
 
 set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -19,11 +19,7 @@ target_compile_features(matrixpath_compiler_flags
 # to the source code
 configure_file(${PROJECT_SOURCE_DIR}/src/config.h.in ${PROJECT_SOURCE_DIR}/src/config.h)
 
-add_executable(matrixpath src/main.cpp src/matrix.cpp src/node.cpp src/path.cpp)
-
-target_link_libraries(matrixpath 
-        PUBLIC matrixpath_compiler_flags)
-
-target_include_directories(matrixpath 
-        PUBLIC ${PROJECT_SOURCE_DIR}/src)
-                           
+# Subproject executable
+add_subdirectory(src ${CMAKE_SOURCE_DIR}/build/bin)
+# Subproject library static
+add_subdirectory(src/lib ${PROJECT_SOURCE_DIR}/build/lib)

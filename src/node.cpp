@@ -37,3 +37,21 @@ std::vector<Node> get_nodes(const char* path)
     
     return nodes;
 }
+
+//Node
+std::vector<Node> get_nodes(const std::vector<int>& node_info)
+{
+    std::vector<Node> nodes;
+    if(node_info.size() % 2 != 0)
+    {
+        std::cout << "Error: node info list is not even numbered "\
+        << "(" << node_info.size() << " items)" << std::endl;
+        return nodes;
+    }
+    
+    for(std::size_t i = 0; i<node_info.size(); i += 2)
+    {
+        nodes.push_back(Node(node_info[i], node_info[i + 1]));
+    }
+    return nodes;
+}
