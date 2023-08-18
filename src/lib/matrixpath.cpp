@@ -68,17 +68,26 @@ std::vector<int> matrixpath(const std::vector<int>& nodes,
     }
     
     // Scores vector
-    std::vector<int> diagonal = matrix.get_diagonal();
+    std::vector<int> diagonal = score_matrix.get_diagonal(); 
     std::vector<int> scores = std::vector<int>();
     scores.reserve(diagonal.size() * 2);
     int id = 0;
     while(id < diagonal.size())
     {
         scores.push_back(id);
-        scores.push_back(diagonal[id]);   
+        scores.push_back(diagonal[id]);
         
-        id+=2;
+        ++id;
     }
+    
+#ifdef DEBUG
+    std::cout << "Result on C++ side: ";
+    for(std::size_t i = 0; i < scores.size(); i++)
+    {
+        std::cout << scores[i] << " ";
+    }
+    std::cout << std::endl;
+#endif  //DEBUG
     
     return scores;
 }

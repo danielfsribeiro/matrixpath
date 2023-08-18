@@ -9,6 +9,8 @@ project(matrixpath
         LANGUAGES C CXX
         DESCRIPTION "Build a matrix from a tree of nodes and navigate it")
 
+message("Generated with config types: ${CMAKE_CONFIGURATION_TYPES}")
+        
 # specify the C++ standard
 add_library(matrixpath_compiler_flags INTERFACE)
 target_compile_features(matrixpath_compiler_flags 
@@ -20,6 +22,8 @@ target_compile_features(matrixpath_compiler_flags
 configure_file(${PROJECT_SOURCE_DIR}/src/config.h.in ${PROJECT_SOURCE_DIR}/src/config.h)
 
 # Subproject executable
-add_subdirectory(src ${CMAKE_SOURCE_DIR}/build/bin)
-# Subproject library static
+add_subdirectory(src ${PROJECT_SOURCE_DIR}/build/bin)
+# Subproject library static and shared
 add_subdirectory(src/lib ${PROJECT_SOURCE_DIR}/build/lib)
+# Subproject python bindings
+add_subdirectory(src/python ${PROJECT_SOURCE_DIR}/build/python)
