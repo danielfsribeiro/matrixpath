@@ -8,9 +8,7 @@ project(matrixpath
         VERSION 1.0.0.0
         LANGUAGES C CXX
         DESCRIPTION "Build a matrix from a tree of nodes and navigate it")
-
-message("Generated with config types: ${CMAKE_CONFIGURATION_TYPES}")
-        
+      
 # specify the C++ standard
 add_library(matrixpath_compiler_flags INTERFACE)
 target_compile_features(matrixpath_compiler_flags 
@@ -19,6 +17,8 @@ target_compile_features(matrixpath_compiler_flags
 
 # configure a header file to pass some of the CMake settings
 # to the source code
+set(Python3_ROOT_DIR "${CONDA_ROOT}/envs/py39")
+find_package(Python 3.9 EXACT COMPONENTS Interpreter Development REQUIRED)
 configure_file(${PROJECT_SOURCE_DIR}/src/config.h.in ${PROJECT_SOURCE_DIR}/src/config.h)
 
 # Subproject executable

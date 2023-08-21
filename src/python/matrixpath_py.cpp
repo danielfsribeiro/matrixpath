@@ -1,7 +1,8 @@
-#include "/home/daniel/anaconda3/envs/py39/include/pybind11/pybind11.h"
-#include "/home/daniel/anaconda3/envs/py39/include/pybind11/stl.h"
+#include "../config.h"
+#include PYBIND11
+#include PYBIND11_STL
 
-#include "../build/include/matrixpath.h"
+#include "../include/matrixpath.h"
 
 #include <string>
 
