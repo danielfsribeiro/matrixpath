@@ -1,4 +1,5 @@
 ## matrixpath
+Collect a hierarchy of parent-child nodes in a tree. The nodes with more connected children are top nodes.  
 
 ### How to use
 ```
